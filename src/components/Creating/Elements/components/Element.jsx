@@ -1,11 +1,19 @@
 import React from 'react'
+import './style.scss'
 
-export default function Element({ image, text }) {
-	console.log(image, text)
+export default function Element({ image, text, setDraggableElement }) {
+	const dragHandle = e => {
+		setDraggableElement(e.target)
+	}
 	return (
-		<div>
-			<img src={image} alt='element' />
-			<p>{text}</p>
+		<div
+			className='element'
+			draggable='true'
+			onDrag={e => dragHandle(e)}
+			id={text.toLowerCase()}
+		>
+			<img draggable='false' src={image} alt='element' />
+			<p draggable='false'>{text}</p>
 		</div>
 	)
 }
